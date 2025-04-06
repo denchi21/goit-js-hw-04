@@ -1,8 +1,26 @@
-function makeTransaction (quantity, pricePerDroid) {
-    const totalPrice = quantity * pricePerDroid;
-    return (`You ordered ${quantity} droids worth ${totalPrice} credits!`);
+function isEnoughCapacity(products, containerSize) {
+
+    let totalSize = 0;
+
+    for (let value of Object.values(products)) {
+        totalSize += value;
+    }
+
+    return totalSize <= containerSize;
 }
 
-    console.log(makeTransaction(5, 3000));
-    console.log(makeTransaction(3, 1000));
-    console.log(makeTransaction(10, 500));
+console.log(
+  isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
+); // false
+
+console.log(
+  isEnoughCapacity({ apples: 1, lime: 5, tomatoes: 3 }, 14)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 18, potatoes: 5, oranges: 2 }, 7)
+); // false
